@@ -99,9 +99,72 @@
     });
 
     let errorBtns = Array.from(document.querySelectorAll('#error-btns > button'));
-
     // Start your code here
     // You may move this JS to another file if you wish
+    errorBtns[0].addEventListener('click', () => {
+      console.log(errorBtns[0].innerHTML);
+    });
+
+    errorBtns[1].addEventListener('click', () => {
+      console.error(errorBtns[1].innerHTML);
+    });
+
+    errorBtns[2].addEventListener('click', () => {
+      console.count();
+    });
+
+    errorBtns[3].addEventListener('click', () => {
+      console.warn("Warn");
+    });
+
+    errorBtns[4].addEventListener('click', () => {
+      const errorMsg = "the # is not even";
+      for (let number = 2; number <= 5; number++) {
+        console.assert(number % 2 === 0, "%o", { number, errorMsg });
+      }
+    });
+
+    errorBtns[5].addEventListener('click', () => {
+      console.clear();
+    });
+
+    errorBtns[6].addEventListener('click', () => {
+      console.dir(errorBtns[6]);
+    });
+
+    errorBtns[7].addEventListener('click', () => {
+      console.dirxml(errorBtns);
+    });
+
+    errorBtns[8].addEventListener('click', () => {
+      console.group();
+    });
+
+    errorBtns[9].addEventListener('click', () => {
+      console.groupEnd();
+    });
+
+    errorBtns[10].addEventListener('click', () => {
+      console.table(["apples", "oranges", "bananas"]);
+    });
+
+    errorBtns[11].addEventListener('click', () => {
+      console.time();
+    });
+
+    errorBtns[12].addEventListener('click', () => {
+      console.timeEnd();
+    });
+
+    errorBtns[13].addEventListener('click', () => {
+      function foo() {
+        function bar() {
+          console.trace();
+        }
+        bar();
+      }
+      foo();
+    });
   </script>
 </body>
 
