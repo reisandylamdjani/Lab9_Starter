@@ -165,6 +165,23 @@
       }
       foo();
     });
+
+    let calcButton = document.getElementById('calculate');
+    calcButton.addEventListener('click', () => {
+      let firstNum = document.getElementById('first-num');
+      let secondNum = document.getElementById('second-num');
+      try {
+        if(!Number.isInteger(parseInt(firstNum.value)) || !Number.isInteger(parseInt(secondNum.value))) {
+          throw new Error("Not a number"); 
+        }
+        console.log("great job");
+      } catch(error) {
+        console.error(error);
+      } finally {
+        console.log(firstNum.value, secondNum.value);
+      }
+    });
+
   </script>
 </body>
 
