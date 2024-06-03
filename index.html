@@ -87,6 +87,14 @@
     </section>
   </main>
 
+  <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
+  <script>
+    window.TrackJS && TrackJS.install({ 
+      token: "1a63ad411e42489baadb9d65d132016e"
+      // for more configuration options, see https://docs.trackjs.com
+    });
+  </script>
+                        
   <script>
     let form = document.querySelector('form');
     form.addEventListener('submit', e => {
@@ -103,10 +111,12 @@
     // You may move this JS to another file if you wish
     errorBtns[0].addEventListener('click', () => {
       console.log(errorBtns[0].innerHTML);
+      TrackJS.track('Console.log');
     });
 
     errorBtns[1].addEventListener('click', () => {
       console.error(errorBtns[1].innerHTML);
+      TrackJS.track('Console.error');
     });
 
     errorBtns[2].addEventListener('click', () => {
@@ -166,6 +176,10 @@
       foo();
     });
 
+    errorBtns[14].addEventListener('click', () => {
+      TrackJS.track('Testing TrackJS!');
+    });
+
     let calcButton = document.getElementById('calculate');
     calcButton.addEventListener('click', () => {
       let firstNum = document.getElementById('first-num');
@@ -176,6 +190,7 @@
         }
         console.log("great job");
       } catch(error) {
+        TrackJS.track('Console.error');
         console.error(error);
       } finally {
         console.log(firstNum.value, secondNum.value);
