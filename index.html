@@ -96,6 +96,13 @@
   </script>
                         
   <script>
+    class CustomError extends Error {
+      constructor(message) {
+        super(message);
+        this.name = "CustomError";
+      }
+    }
+
     let form = document.querySelector('form');
     form.addEventListener('submit', e => {
       e.preventDefault();
@@ -104,6 +111,20 @@
       let secondNum = document.querySelector('#second-num').value;
       let operator = document.querySelector('#operator').value;
       output.innerHTML = eval(`${firstNum} ${operator} ${secondNum}`);
+      try {
+        if (operator === '/' && secondNum == 0) {
+          throw new CustomError("Division by zero is not allowed");
+        }
+        output.innerHTML = eval(`${firstNum} ${operator} ${secondNum}`);
+      } catch (error) {
+        if (error instanceof CustomError) {
+          TrackJS.track('CustomError');
+        } else {
+          TrackJS.track('Error');
+        }
+        console.error(error);
+        output.innerHTML = error.message;
+      }
     });
 
     let errorBtns = Array.from(document.querySelectorAll('#error-btns > button'));
